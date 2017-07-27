@@ -12,11 +12,13 @@ docker build -t shyd/sshd ./docker-sshd
 ## Run
 
 ```
-docker run -d -p 2222:22 -v $(pwd)/root:/root  -v $(pwd)/home:/home --name sshd shyd/sshd
+docker run -d -p 2222:22 -v ssh-root:/root -v etc-ssh:/etc/ssh --name sshd shyd/sshd
 ```
+
+Make sure to use named volumes in order to allow default content to be placed inside on first run.
 
 ## Connect
 
 ```
-ssh -p 2222 root@sshd
+ssh -p 2222 root@localhost
 ```
